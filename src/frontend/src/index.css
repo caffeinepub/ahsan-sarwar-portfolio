@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    /* Dark navy background: #071821 → oklch ~0.16 0.035 220 */
+    --background: 0.13 0.028 220;
+    --foreground: 0.92 0.012 200;
+    --card: 0.18 0.032 215;
+    --card-foreground: 0.92 0.012 200;
+    --popover: 0.18 0.032 215;
+    --popover-foreground: 0.92 0.012 200;
+    /* Neon green accent: #64F59A → oklch ~0.87 0.18 152 */
+    --primary: 0.87 0.18 152;
+    --primary-foreground: 0.13 0.028 220;
+    --secondary: 0.22 0.038 215;
+    --secondary-foreground: 0.92 0.012 200;
+    --muted: 0.22 0.038 215;
+    --muted-foreground: 0.62 0.025 210;
+    --accent: 0.87 0.18 152;
+    --accent-foreground: 0.13 0.028 220;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.92 0.012 200 / 10%;
+    --input: 0.92 0.012 200 / 15%;
+    --ring: 0.87 0.18 152;
+    --chart-1: 0.87 0.18 152;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.16 0.03 218;
+    --sidebar-foreground: 0.92 0.012 200;
+    --sidebar-primary: 0.87 0.18 152;
+    --sidebar-primary-foreground: 0.13 0.028 220;
+    --sidebar-accent: 0.22 0.038 215;
+    --sidebar-accent-foreground: 0.92 0.012 200;
+    --sidebar-border: 0.92 0.012 200 / 10%;
+    --sidebar-ring: 0.87 0.18 152;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #071821 0%, #0a1f2a 50%, #071821 100%);
+    min-height: 100vh;
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(20, 40, 45, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 245, 154, 0.18);
+  }
+
+  .neon-text {
+    color: #64f59a;
+    text-shadow: 0 0 20px rgba(100, 245, 154, 0.5);
+  }
+
+  .neon-border {
+    border-color: rgba(100, 245, 154, 0.4);
+    box-shadow: 0 0 15px rgba(100, 245, 154, 0.15);
+  }
+}
+
+/* Glow ring animation for profile image */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px 4px rgba(100, 245, 154, 0.4), 0 0 60px 10px
+      rgba(100, 245, 154, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 35px 8px rgba(100, 245, 154, 0.65), 0 0 90px 18px
+      rgba(100, 245, 154, 0.3);
+  }
+}
+
+@keyframes ring-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-particle {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-60px) translateX(-10px) rotate(180deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) translateX(-20px) rotate(270deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes typing-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes skill-bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--skill-width);
+  }
+}
+
+@keyframes badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(100, 245, 154, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(100, 245, 154, 0.5);
+  }
+}
+
+.profile-glow-ring {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.cursor-blink {
+  animation: typing-cursor 0.8s ease-in-out infinite;
+}
+
+.badge-animate {
+  animation: badge-glow 2.5s ease-in-out infinite;
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #64f59a, #2fea7a);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(100, 245, 154, 0.8);
+}
